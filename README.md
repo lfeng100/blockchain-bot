@@ -24,9 +24,6 @@ This repository holds scripts that easily allow for interaction with different b
 1. Bitcoin Testnet `btc-testnet`
 
 ## Setup
-
-Please see the following confluence page for more details: [https://layer2.atlassian.net/wiki/spaces/ENGINEERIN/pages/173211667/Add+new+blockchain+wallet+coin+to+blockchain+bot]
-
 All interaction to the python brownie scripts are done through a rest-api to add an additional abstraction layer (makes it easier).
 
 Before running locally, please visit the page above where details for local testing are in red text.
