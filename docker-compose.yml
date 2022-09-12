@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+
+    blockchain-bot:
+      build:
+        context: ./
+        dockerfile: dockerfile
+      ports:
+        - "5000:5000"
+      container_name: blockchain-bot

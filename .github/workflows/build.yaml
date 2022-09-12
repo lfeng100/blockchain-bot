@@ -1,0 +1,33 @@
+name: Deploy blockchain bot to ECR
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    env:
+      ECR_REGISTRY: ${{ secrets.ECR_REGISTRY }}
+    steps:
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@master
+        with:
+          aws-region: us-east-1
+          role-to-assume: ${{ secrets.AWS_IAM_ROLE }}
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+      - uses: actions/checkout@v2
+      - name: Set tag version
+        id: vars
+        run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
+      - name: Dockerize l2f-blockchain-bot
+        run: docker build -t ${ECR_REGISTRY}/l2f-blockchain-bot:${{ steps.vars.outputs.tag }} .
+      - name: Push blockchain-bot to ECR
+        run: docker push ${ECR_REGISTRY}/l2f-blockchain-bot:${{ steps.vars.outputs.tag }}
