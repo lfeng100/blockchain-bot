@@ -1,5 +1,5 @@
 # L2F Blockchain Scripts
-This repository holds scripts that easily allow for interaction with different blockchains through the command line. To reflect any changes to dev, a new release must be cut onto main to initiate Github Actions workflow. Then the deployment repo (l2f-blockchain-bot-argocd) deployment manifest must be updated with the release tag as the container image tag.
+This repository holds scripts that easily allow for interaction with different blockchains through the command line.
 
 ## Chains
 
@@ -41,8 +41,6 @@ If image is run locally, you can the hit address specified in the terminal (upon
 Notes: Change each instance of CHANNEL to a private channel is slack to avoid clogging up the main bot server. Make sure the bot is added as an App to the channel.
 
 ## Adding chain information
-
-Please see the following confluence page for more comprehensive steps: https://layer2.atlassian.net/wiki/spaces/ENGINEERIN/pages/173211667/Add+new+blockchain+wallet+coin+to+blockchain+bot
 
 ### Adding/change wallet
 To add new wallets, add the private keys to the .env file inside the chain_interaction directory (do not use real wallets right now for security reasons). Then add the address to the brownie-config.yaml file (remove hex 0x start). This wallet should now be usable.
